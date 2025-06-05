@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
-
+use App\Http\Controllers\Admin\KomikController;
 
 
 Route::get('/', function () {
@@ -24,6 +24,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+Route::get('/komik/tambah', [KomikController::class, 'create'])->name('komik.create');
+Route::post('/komik/simpan', [KomikController::class, 'store'])->name('komik.store');
+
 
 
 Route::get('/admin/dashboard', function () {
@@ -33,5 +36,3 @@ Route::get('/admin/dashboard', function () {
 Route::get('/user/dashboard', function () {
     return 'Selamat datang User!';
 })->middleware('auth')->name('user.dashboard');
-
-
