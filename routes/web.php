@@ -24,9 +24,11 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-Route::get('/komik/tambah', [KomikController::class, 'create'])->name('komik.create');
-Route::post('/komik/simpan', [KomikController::class, 'store'])->name('komik.store');
-
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/komik/tambah', [KomikController::class, 'create'])->name('komik.create');
+    Route::post('/komik/tambah', [KomikController::class, 'store'])->name('komik.store');
+     Route::get('/komik', [KomikController::class, 'index'])->name('komik.index');
+});
 
 
 Route::get('/admin/dashboard', function () {
