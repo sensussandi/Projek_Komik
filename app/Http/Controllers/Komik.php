@@ -16,4 +16,6 @@ class KomikController extends Controller
 
         return redirect()->back()->with('success', 'Komik berhasil disimpan!');
     }
+
+    
 }
