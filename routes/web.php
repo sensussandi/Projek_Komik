@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -24,6 +24,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    
 
 Route::get('/admin/dashboard', function () {
     return 'Selamat datang Admin!';
@@ -43,3 +46,15 @@ Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer'
 Route::get('/chapter/{id}', function($id) {
     return "Chapter ID: " . $id;
 })->name('chapter.show');
+    Route::get('/user/home', function () {
+        return view('home');
+    })->name('user.dashboard');
+
+    Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
+
+    Route::get('/user/home', [HomeController::class, 'index'])->name('user.dashboard');
+
+    Route::get('/chapter/{id}', function($id) {
+        return "Chapter ID: " . $id;
+    })->name('chapter.show');
+});
