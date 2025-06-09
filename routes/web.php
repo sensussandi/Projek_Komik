@@ -5,7 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\KomikController;
+=======
+use App\Http\Controllers\ComicController;
+use App\Http\Controllers\HomeController;
+>>>>>>> 1f910787eb8d85e71d366edfbda977c498a9d31b
 
 
 Route::get('/', function () {
@@ -35,6 +40,20 @@ Route::get('/admin/dashboard', function () {
     return 'Selamat datang Admin!';
 })->middleware('auth')->name('admin.dashboard');
 
+<<<<<<< HEAD
 Route::get('/user/dashboard', function () {
     return 'Selamat datang User!';
 })->middleware('auth')->name('user.dashboard');
+=======
+Route::get('/user/home', function () {
+    return view('home');
+})->middleware('auth')->name('user.dashboard');
+
+
+Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
+Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->name('user.dashboard');
+
+Route::get('/chapter/{id}', function($id) {
+    return "Chapter ID: " . $id;
+})->name('chapter.show');
+>>>>>>> 1f910787eb8d85e71d366edfbda977c498a9d31b

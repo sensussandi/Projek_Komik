@@ -1,0 +1,139 @@
+body {
+    background-color: #2A2424;
+    text-color: white;
+}
+
+.container {
+
+    padding: 1rem; 
+    margin-top: 1rem;
+    margin-left: 0; 
+    
+}
+
+.container h1{
+    font-size:24px;
+    color:white;
+    padding-bottom:1.5rem;
+}
+.container p{
+    font-size:18px;
+    color:white;
+    text-align: center;
+    margin-right:50px
+}
+
+.navbar-custom {
+  background-color: #040303;
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: white !important; /* teks putih */
+}
+
+
+.navbar-custom .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* .comic-wrapper-container {
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
+.comic-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.comic-item {
+    text-align: center;
+    transform: scale(0.68);
+    transform-origin: top center;
+}
+
+.comic-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.comic-item p {
+    font-size: 20px;
+    margin: 0;
+}
+ */
+
+  /* Biar kontainer penuh layar */
+    .comic-wrapper-container {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Atur grid 5 kolom */
+    .comic-wrapper {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* Atur setiap item */
+    .comic-item {
+        text-align: center;
+        transform: scale(0.68); /* perkecil isi tanpa ganggu grid */
+        transform-origin: top center;
+    }
+
+    .comic-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+    .comic-item h1 {
+        font-size: 30px;
+        margin: 0;
+    }
+
+    /* Optional: reset container bawaan Bootstrap */
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .chapter-buttons {
+    display: flex;
+    flex-direction: column; /* bikin tombol atas-bawah */
+    gap: 0.5rem; /* jarak antar tombol */
+    margin-top: 0.5rem;
+    border-radius: 10px; 
+}
+
+.chapter-button {
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.chapter-button:hover {
+    background-color: #333; /* sedikit lebih terang saat hover */
+}
+
