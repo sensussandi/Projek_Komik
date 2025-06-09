@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\ChapterController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,6 +39,5 @@ Route::get('/user/home', function () {
 Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
 Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->name('user.dashboard');
 
-Route::get('/chapter/{id}', function($id) {
-    return "Chapter ID: " . $id;
-})->name('chapter.show');
+Route::get('/chapter/{id}', [ChapterController::class, 'show'])->name('chapter.show');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');

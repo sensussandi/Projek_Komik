@@ -12,4 +12,12 @@ class Chapter extends Model
     {
         return $this->belongsTo(Comic::class, 'komik_id');
     }
+
+    public function pages()
+    {
+    return $this->hasMany(Halaman::class)->orderBy('urutan');
+    }
+
+
+
 }
