@@ -31,7 +31,7 @@
           <a class="nav-link" href="#">Library</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#">Populer</a>
+          <a class="nav-link" href="#">Po puler</a>
         </li>
   
       </ul>
