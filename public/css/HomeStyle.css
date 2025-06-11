@@ -39,48 +39,14 @@ body {
 }
 
 
-/* .comic-wrapper-container {
-    width: 100vw;
-    padding: 0;
-    margin: 0;
-}
-
-.comic-wrapper {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.comic-item {
-    text-align: center;
-    transform: scale(0.68);
-    transform-origin: top center;
-}
-
-.comic-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 0.3rem;
-}
-
-.comic-item p {
-    font-size: 20px;
-    margin: 0;
-}
- */
-
-  /* Biar kontainer penuh layar */
-    .comic-wrapper-container {
+.comic-wrapper-container {
         width: 100vw;
         padding: 0;
         margin: 0;
     }
 
-    /* Atur grid 5 kolom */
-    .comic-wrapper {
+  
+.comic-wrapper {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 1rem;
@@ -88,36 +54,35 @@ body {
         box-sizing: border-box;
     }
 
-    /* Atur setiap item */
-    .comic-item {
+   
+.comic-item {
         text-align: center;
-        transform: scale(0.68); /* perkecil isi tanpa ganggu grid */
+        transform: scale(0.68); 
         transform-origin: top center;
     }
 
-    .comic-item img {
+.comic-item img {
         width: 100%;
         height: auto;
         display: block;
         margin-bottom: 0.3rem;
     }
 
-    .comic-item h1 {
+.comic-item h1 {
         font-size: 30px;
         margin: 0;
     }
 
-    /* Optional: reset container bawaan Bootstrap */
-    .container {
+  
+.container {
         max-width: 100%;
         padding: 0;
         margin: 0;
     }
-
-    .chapter-buttons {
+.chapter-buttons {
     display: flex;
-    flex-direction: column; /* bikin tombol atas-bawah */
-    gap: 0.5rem; /* jarak antar tombol */
+    flex-direction: column; 
+    gap: 0.5rem; 
     margin-top: 0.5rem;
     border-radius: 10px; 
 }
@@ -134,6 +99,6 @@ body {
 }
 
 .chapter-button:hover {
-    background-color: #333; /* sedikit lebih terang saat hover */
+    background-color: #333; 
 }
 

@@ -8,7 +8,7 @@ class ComicController extends Controller
 {
     public function index()
     {
-        $comics = Comic::all();  // ambil semua data komik
+        $comics = Comic::all();  
         return view('home', compact('comics'));
     }
 }
