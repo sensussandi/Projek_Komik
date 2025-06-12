@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PopulerController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\UserController;
 
 
 Route::get('/', function () {
@@ -41,12 +42,10 @@ Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->
 Route::get('/user/kategori/{genre}', [KategoriController::class, 'show'])->name('kategori.show');
 Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer');
 
-# Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/dashboard', [KomikController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/create', [KomikController::class, 'create'])->name('komik.create');
 Route::post('/admin/store', [KomikController::class, 'store'])->name('store');
-
-
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');    
 
 Route::get('/chapter/{id}', function($id) {
     return "Chapter ID: " . $id;
@@ -64,3 +63,4 @@ Route::get('/chapter/{id}', function($id) {
         return "Chapter ID: " . $id;
     })->name('chapter.show');
 });
+

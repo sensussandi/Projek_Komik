@@ -19,6 +19,7 @@ class KomikController extends Controller
         return view('admin.dashboard', compact('komiks'));
     }
     
+    
     public function store(Request $request)
     {
         $request->validate([
