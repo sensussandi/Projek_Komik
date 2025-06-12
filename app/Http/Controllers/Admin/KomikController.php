@@ -12,32 +12,37 @@ class KomikController extends Controller
     {
         return view('admin.create');
     }
+    public function dashboard()
+    {
+        $komiks = \App\Models\Komik::all(); // ambil semua data
 
-    public function store(Request $request)
-{
-    $request->validate([
-        'judul' => 'required|string|max:100',
-        'penulis' => 'required|string|max:100',
-        'sinopsis' => 'required|string',
-        'genre' => 'nullable|string|max:100',
-        'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-    ]);
-
-    // Simpan file cover jika diupload
-    $coverPath = null;
-    if ($request->hasFile('cover')) {
-        $coverPath = $request->file('cover')->store('covers', 'public');
+        return view('admin.dashboard', compact('komiks'));
     }
 
-    Komik::create([
-        'judul' => $request->judul,
-        'penulis' => $request->penulis,
-        'sinopsis' => $request->sinopsis,
-        'genre' => $request->genre,
-        'cover_url' => $coverPath,
-    ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required|string|max:100',
+            'penulis' => 'required|string|max:100',
+            'sinopsis' => 'required|string',
+            'genre' => 'nullable|string|max:100',
+            'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
 
-    return redirect()->route('komik.create')->with('success', 'Komik berhasil ditambahkan!');
-}
+        // Simpan file cover jika diupload
+        $coverPath = null;
+        if ($request->hasFile('cover')) {
+            $coverPath = $request->file('cover')->store('covers', 'public');
+        }
 
+        Komik::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'sinopsis' => $request->sinopsis,
+            'genre' => $request->genre,
+            'cover_url' => $coverPath,
+        ]);
+
+        return redirect('/admin/dashboard')->route('komik.create')->with('success', 'Komik berhasil ditambahkan!');
+    }
 }

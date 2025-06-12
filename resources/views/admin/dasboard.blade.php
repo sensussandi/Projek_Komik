@@ -56,7 +56,7 @@
     <!-- Konten Utama -->
     <div class="container mt-4">
         <h4>Manajemen Komik</h4>
-        <a href="{{ route('create') }}" class="btn btn-dark mb-3">Tambah Komik</a>
+        <a href="{{ route('komik.create') }}" class="btn btn-dark mb-3">Tambah Komik</a>
         <div class="table-responsive">
             <table class="table table-bordered table-dark">
                 <thead>
