@@ -7,7 +7,7 @@ use App\Models\Komik;
 
 class KomikController extends Controller
 {
-    public function store(Requ  est $request)
+    public function store(Request $request)
     {
         $komik = new Komik();
         $komik->judul = $request->input('judul');
