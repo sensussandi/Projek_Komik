@@ -1,17 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
-
+use App\Http\Controllers\Admin\KomikController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\HomeController;
-
-
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PopulerController;
+use App\Http\Controllers\AdminDashboardController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -31,10 +30,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     
 
-Route::get('/admin/dashboard', function () {
-    return 'Selamat datang Admin!';
-})->middleware('auth')->name('admin.dashboard');
-
 
 Route::get('/user/home', function () {
     return view('home');
@@ -45,6 +40,12 @@ Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
 Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->name('user.dashboard');
 Route::get('/user/kategori/{genre}', [KategoriController::class, 'show'])->name('kategori.show');
 Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer');
+
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/create', [KomikController::class, 'create'])->name('create');
+Route::post('/admin/store', [KomikController::class, 'store'])->name('store');
+
+
 
 Route::get('/chapter/{id}', function($id) {
     return "Chapter ID: " . $id;

@@ -1,47 +1,93 @@
-@extends('layouts.app') <!-- atau sesuaikan dengan layout Anda -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Komik</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+        .navbar {
+            background-color: #111;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .navbar a.logout {
+            color: red;
+        }
+        .form-container {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #0cf;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn-custom {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    </style>
+</head>
+<body>
 
-@section('content')
-<div style="background-color: black; color: white; padding: 20px; border-radius: 10px;">
-    <h3 style="color: white; font-weight: bold;">Admin</h3>
-    <hr style="border-color: white;">
+    <!-- Navbar -->
+    <div class="navbar">
+        <strong>Admin</strong>
+        <a href="{{ url('/admin/dasboard') }}">Dasboard</a>
+        <a href="#">Pengguna</a>
+        <a href="#" class="logout">Logout</a>
+    </div>
 
-    <form action="{{ route('komik.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    <!-- Form Tambah Komik -->
+    <div class="form-container">
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-        <div style="margin-bottom: 15px;">
-            <label>Judul :</label><br>
-            <input type="text" name="judul" class="form-control" style="background-color: #333; color: white;" required>
-        </div>
+        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-2">
+                <label for="judul">Judul :</label>
+                <input type="text" name="judul" id="judul" class="form-control bg-dark text-white" required>
+            </div>
+            <div class="mb-2">
+                <label for="genre">Genre :</label>
+                <input type="text" name="genre" id="genre" class="form-control bg-dark text-white">
+            </div>
+            <div class="mb-2">
+                <label for="penulis">Penulis :</label>
+                <input type="text" name="penulis" id="penulis" class="form-control bg-dark text-white" required>
+            </div>
+            <div class="mb-2">
+                <label for="sinopsis">Deskripsi :</label>
+                <textarea name="sinopsis" id="sinopsis" rows="4" class="form-control bg-dark text-white" required placeholder="Text Area"></textarea>
+            </div>
+            <div class="mb-2">
+                <label for="cover">Gambar Cover :</label>
+                <input type="file" name="cover" id="cover" class="form-control bg-dark text-white">
+            </div>
+            <div class="mb-2">
+                <label for="chapter">Tambahkan Chapter :</label>
+                <input type="text" name="chapter" id="chapter" class="form-control bg-dark text-white">
+            </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Genre :</label><br>
-            <input type="text" name="genre" class="form-control" style="background-color: #333; color: white;" required>
-        </div>
+            <div class="mt-3 d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary btn-custom">Simpan</button>
+                <a href="{{ url('/admin/dashboard') }}" class="btn btn-danger btn-custom">Batal</a>
+            </div>
+        </form>
+    </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Penulis :</label><br>
-            <input type="text" name="penulis" class="form-control" style="background-color: #333; color: white;" required>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <label>Deskripsi :</label><br>
-            <textarea name="deskripsi" rows="4" class="form-control" style="background-color: #333; color: white;"></textarea>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <label>Gambar Cover :</label><br>
-            <input type="file" name="cover" class="form-control-file" style="color: white;" required>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <label>Tambahkan Chapter :</label><br>
-            <input type="text" name="chapter" class="form-control" style="background-color: #333; color: white;">
-        </div>
-
-        <div>
-            <button type="submit" class="btn btn-primary" style="background-color: blue;">Simpan</button>
-            <a href="{{ route('komik.index') }}" class="btn btn-danger" style="margin-left: 10px;">Batal</a>
-        </div>
-    </form>
-</div>
-@endsection
+</body>
+</html>
