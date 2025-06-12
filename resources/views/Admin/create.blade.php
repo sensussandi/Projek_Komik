@@ -44,7 +44,7 @@
     <!-- Navbar -->
     <div class="navbar">
         <strong>Admin</strong>
-        <a href="{{ url('/admin/dasboard') }}">Dasboard</a>
+        <a href="{{ url('/admin/dashboard') }}">Dashboard</a>
         <a href="#">Pengguna</a>
         <a href="#" class="logout">Logout</a>
     </div>

@@ -41,8 +41,8 @@ Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->
 Route::get('/user/kategori/{genre}', [KategoriController::class, 'show'])->name('kategori.show');
 Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer');
 
-Route::get('/admin/dasboard', [KomikController::class, 'dashboard'])->name('dashboard');
 # Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [KomikController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/create', [KomikController::class, 'create'])->name('komik.create');
 Route::post('/admin/store', [KomikController::class, 'store'])->name('store');
 

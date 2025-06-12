@@ -12,13 +12,13 @@ class KomikController extends Controller
     {
         return view('admin.create');
     }
+    // Method untuk menampilkan dashboard
     public function dashboard()
     {
-        $komiks = \App\Models\Komik::all(); // ambil semua data
-
+        $komiks = Komik::all();
         return view('admin.dashboard', compact('komiks'));
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -29,7 +29,6 @@ class KomikController extends Controller
             'cover' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        // Simpan file cover jika diupload
         $coverPath = null;
         if ($request->hasFile('cover')) {
             $coverPath = $request->file('cover')->store('covers', 'public');
@@ -43,6 +42,6 @@ class KomikController extends Controller
             'cover_url' => $coverPath,
         ]);
 
-        return redirect('/admin/dashboard')->route('komik.create')->with('success', 'Komik berhasil ditambahkan!');
+        return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil ditambahkan!');
     }
 }
