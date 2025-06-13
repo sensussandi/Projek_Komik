@@ -45,3 +45,4 @@ Route::get('/chapter/{id}', [ChapterController::class, 'show'])->name('chapter.s
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/search', [ComicController::class, 'search'])->name('komik.search');
+Route::get('/komik/{id}', [ComicController::class, 'show'])->name('komik.detail');

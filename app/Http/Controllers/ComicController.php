@@ -20,11 +20,15 @@ class ComicController extends Controller
 
         return view('komik.result', compact('komik', 'query'));
     }
+
     public function show($id)
         {
-            $komik = Komik::findOrFail($id); // sesuaikan nama model jika perlu
-            return view('komik.show', compact('komik'));
+            $komik = Komik::with('chapters')->findOrFail($id);
+            return view('komik.detail', compact('komik'));
         }
+
+ 
+
 
 
 }

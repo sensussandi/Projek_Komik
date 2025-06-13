@@ -23,6 +23,7 @@ class Comic extends Model
                     ->orderByDesc('nomor_chapter')
                     ->take(2);
     }
+    
 
 
 

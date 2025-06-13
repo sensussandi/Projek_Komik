@@ -13,7 +13,9 @@
                         <div class="comic-wrapper">
                             @foreach ($komik as $item)
                             <div class="comic-item">
-                                <img src="{{ asset($item->cover_url) }}" alt="{{ $item->judul }}">
+                                <a href="{{ route('komik.detail', $item->id) }}">
+                                    <img src="{{ asset($item->cover_url) }}" alt="{{ $item->judul }}">
+                                </a>
                                 <h1>{{ $item->judul }}</h1>
                             </div>
                             @endforeach
