@@ -37,7 +37,11 @@ Route::get('/user/home', function () {
 
 
 Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
+Route::get('/komik/{id}', [ComicController::class, 'show'])->name('komik.show');
+
 Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->name('user.dashboard');
 
 Route::get('/chapter/{id}', [ChapterController::class, 'show'])->name('chapter.show');
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+
+Route::get('/search', [ComicController::class, 'search'])->name('komik.search');

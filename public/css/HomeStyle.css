@@ -4,28 +4,35 @@ body {
 }
 
 .container {
+    position: relative;
+    z-index: 1;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+    max-width: 100%;
+}
 
-    padding: 1rem; 
-    margin-top: 1rem;
-    margin-left: 0; 
-    
+.container h3{
+    color:white;
+}
+.container p{
+    color:white;
 }
 
 .container h1{
     font-size:24px;
     color:white;
-    padding-bottom:1.5rem;
-}
-.container p{
-    font-size:18px;
-    color:white;
-    text-align: center;
-    margin-right:50px
+    
 }
 
+
 .navbar-custom {
-  background-color: #040303;
+    z-index: 9999;
+    position: relative;
 }
+
+
 
 .navbar-custom .nav-link,
 .navbar-custom .navbar-brand,
@@ -74,11 +81,7 @@ body {
     }
 
   
-.container {
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-    }
+
 .chapter-buttons {
     display: flex;
     flex-direction: column; 

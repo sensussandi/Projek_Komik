@@ -5,7 +5,7 @@
 @section('content')
     <h1>Rekomendasi</h1>
 
-    <div class="container">
+    <div class="container_content">
         <div class="comic-wrapper">
             @foreach ($comics as $comic)
                 <div class="comic-item">
