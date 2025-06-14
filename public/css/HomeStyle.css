@@ -9,7 +9,7 @@ body {
     padding-top: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    margin: 0;
+    margin: 5rem;
     max-width: 100%;
 }
 
@@ -29,8 +29,16 @@ body {
 
 .navbar-custom {
     z-index: 9999;
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100vw; /* atau 100% */
+    background-color: black;
+    padding: 1rem;
 }
+
+
+
+
 
 
 
