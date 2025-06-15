@@ -23,8 +23,8 @@ class ComicController extends Controller
 
     public function show($id)
         {
-            $komik = Komik::with('chapters')->findOrFail($id);
-            return view('komik.detail', compact('komik'));
+            $komik = Comic::with('chapters')->findOrFail($id);
+            return view('komik.desc', compact('komik'));
         }
 
  
