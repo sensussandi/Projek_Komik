@@ -65,3 +65,4 @@ Route::get('/chapter/{id}', function($id) {
         return "Chapter ID: " . $id;
     })->name('chapter.show');
 });
+
