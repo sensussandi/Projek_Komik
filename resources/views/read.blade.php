@@ -5,7 +5,7 @@
 @section('content')
     <div class="reader-header">
         <a href="{{ url()->previous() }}">⬅️ Kembali</a>
-        <span>{{ $chapter->comic->judul }} > Chapter {{ $chapter->nomor_chapter }}</span>
+        <span>{{ $chapter->comic->judul }} > Chapter: {{ $chapter->judul_chapter }}</span>
         <a href="{{ route('home') }}">🏠 Home</a>
     </div>
 

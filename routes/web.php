@@ -10,7 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PopulerController;
 use App\Http\Controllers\AdminDashboardController;
-
+use App\Http\Controllers\ChapterController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -68,8 +68,8 @@ Route::get('/komik/{id}', [ComicController::class, 'show'])->name('komik.detail'
 
     Route::get('/user/home', [HomeController::class, 'index'])->name('user.dashboard');
 
-    Route::get('/chapter/{id}', function($id) {
-        return "Chapter ID: " . $id;
-    })->name('chapter.show');
+    Route::get('/chapter/{id}',[ChapterController::class, 'show'])->name('chapter.show');
+
+ 
 });
 
