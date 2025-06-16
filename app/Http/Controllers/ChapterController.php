@@ -10,7 +10,7 @@ class ChapterController extends Controller
     public function show($id)
     {
         $chapter = Chapter::with(['comic', 'pages' => function($query) {
-            $query->orderBy('urutan');
+            $query->orderBy('urutan','desc');
         }])->findOrFail($id);
 
         return view('read', compact('chapter'));

@@ -14,11 +14,13 @@
     <hr>
     <h3>Daftar Chapter:</h3>
     <ul>
+        <div class="chapter-buttons">
         @foreach($komik->chapters as $chapter)
-            <li>
-                <a href="{{ route('chapter.show', $chapter->id) }}">{{ $chapter->judul }}</a>
-            </li>
+          
+                <a href="{{ route('chapter.show', $chapter->id) }}" class="chapterONdesc-button">Chapter {{ $chapter->nomor_chapter}}</a>
+           
         @endforeach
+         </div>
     </ul>
 </div>
 @endsection
