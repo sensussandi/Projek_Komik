@@ -58,6 +58,7 @@ Route::get('/chapter/{id}', function($id) {
 })->name('chapter.show');
 
 Route::get('/search',[ComicController::class,'search'])->name('komik.search');
+Route::get('/komik/{id}', [ComicController::class, 'show'])->name('komik.detail');
 
     Route::get('/user/home', function () {
         return view('home');
