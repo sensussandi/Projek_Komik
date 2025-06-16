@@ -52,9 +52,12 @@ Route::post('/admin/store', [KomikController::class, 'store'])->name('store');
 
 
 
+
 Route::get('/chapter/{id}', function($id) {
     return "Chapter ID: " . $id;
 })->name('chapter.show');
+
+Route::get('/search',[ComicController::class,'search'])->name('komik.search');
 
     Route::get('/user/home', function () {
         return view('home');
