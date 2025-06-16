@@ -45,8 +45,8 @@
             </li>
           </ul>
 
-          <form form class="d-flex" method="GET" action="{{route('komik.search')}}">
-            <input class="form-control me-2" type="search" placeholder="Search" name="searching" aria-label="Search">
+          <form class="d-flex" method="GET" action="{{route('komik.search')}}">
+            <input class="form-control me-2" type="search" name="searching" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit">Search</button>
           </form>
         </div>
