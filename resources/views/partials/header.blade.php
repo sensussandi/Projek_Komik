@@ -10,8 +10,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/HomeStyle.css') }}">
     
-   <title>@yield('judul', 'Judul Default')</title>
-
+    <title>@yield('judul', 'Judul Default')</title>
   </head>
   <body>
 
@@ -27,21 +26,30 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kategori</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#">Populer</a>
-        </li>
-  
-      </ul>
-      <form class="d-flex" method="GET" action="{{route('komik.search')}}">
-        <input class="form-control me-2" type="search" name="searching" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-<!-- end navbar -->
-    
+            <!-- Kategori Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kategori
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
+                <li><a class="dropdown-item" href="{{ route('kategori.show', 'action') }}">Action</a></li>
+                <li><a class="dropdown-item" href="{{ route('kategori.show', 'adventure') }}">Adventure</a></li>
+                <li><a class="dropdown-item" href="{{ route('kategori.show', 'romance') }}">Romance</a></li>
+                <li><a class="dropdown-item" href="{{ route('kategori.show', 'shounen') }}">Shounen</a></li>
+              </ul>
+            </li>
 
+            <!-- Populer Link -->
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('populer') }}">Populer</a>
+            </li>
+          </ul>
+
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- end navbar -->
