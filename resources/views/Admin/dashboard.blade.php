@@ -104,7 +104,6 @@
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus komik ini?')">Hapus</button>
                         </form>
                     </td>
-
                 </tr>
                 @endforeach
             </tbody>

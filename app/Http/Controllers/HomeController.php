@@ -9,8 +9,11 @@ class HomeController extends Controller
 {
     public function index()
     {
+        
         // $comics = Comic::all(); // ambil semua data komik
           $comics = Comic::with('latestChapters')->get();
         return view('home', compact('comics'));
+        
+        
     }
 }

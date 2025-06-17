@@ -8,10 +8,10 @@ use App\Models\Chapter;
 
 class Comic extends Model
 {
-    protected $table = 'komik'; 
+    protected $table = 'komik';
     protected $fillable = ['title', 'image_path'];
 
-      public function chapters()
+    public function chapters()
     {
         return $this->hasMany(Chapter::class, 'komik_id');
     }
@@ -20,10 +20,6 @@ class Comic extends Model
     public function latestChapters()
     {
         return $this->hasMany(Chapter::class, 'komik_id')
-                    ->orderByDesc('nomor_chapter')
-                    ->take(2);
+            ->orderBy('nomor_chapter', 'desc');
     }
-
-
-
 }

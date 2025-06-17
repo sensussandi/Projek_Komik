@@ -24,8 +24,14 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/cek-login', function () {
+    return dd(session()->all());
+});
+
+Route::middleware(['web'])->group(function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+});
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.link');
 
@@ -47,11 +53,11 @@ Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer'
 
 // Admin Routes
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
 
 // Tambah Komik
 Route::get('/admin/create', [KomikController::class, 'create'])->name('komik.create');
 Route::post('/admin/store', [KomikController::class, 'store'])->name('store');
-Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');    
 
 // Edit Komik
 Route::get('/admin/komik/{id}/edit', [KomikController::class, 'edit'])->name('komik.edit');
@@ -59,6 +65,11 @@ Route::put('/admin/komik/{id}', [KomikController::class, 'update'])->name('komik
 
 // Hapus Komik
 Route::delete('/admin/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
+
+// User Management
+Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('users.ban');
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
 
 
 Route::get('/chapter/{id}', function($id) {
