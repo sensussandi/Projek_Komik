@@ -9,7 +9,12 @@ class PopulerController extends controller
 {
     public function index()
     {
-        $comics = Comic::orderBy('views', 'desc')->take(10)->get(); // pastikan ada kolom views
+
+       $comics = Comic::whereHas('chapters')
+        ->orderBy('id', 'desc')
+        ->take(10)
+        ->get();
+
         return view('populer', compact('comics'));
     }
 }
