@@ -96,12 +96,15 @@
                     <td>{{ $komik->genre }}</td>
                     <td>{{ Str::limit($komik->sinopsis, 100) }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="#" method="POST" style="display:inline;">
-                            @csrf @method('DELETE')
-                            <button class="btn btn-danger btn-sm">Hapus</button>
+                        <a href="{{ route('komik.edit', $komik->id) }}" class="btn btn-primary btn-sm">Edit</a>
+
+                        <form action="{{ route('komik.destroy', $komik->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus komik ini?')">Hapus</button>
                         </form>
                     </td>
+
                 </tr>
                 @endforeach
             </tbody>

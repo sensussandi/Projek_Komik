@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('user.dashboard') }}">Home</a>
           </li>
           <!-- Kategori Dropdown -->
           <li class="nav-item dropdown">
@@ -36,8 +36,8 @@
             <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
               <li><a class="dropdown-item" href="{{ route('kategori.show', 'action') }}">Action</a></li>
               <li><a class="dropdown-item" href="{{ route('kategori.show', 'adventure') }}">Adventure</a></li>
+              <li><a class="dropdown-item" href="{{ route('kategori.show', 'comedy') }}">Comedy</a></li>
               <li><a class="dropdown-item" href="{{ route('kategori.show', 'romance') }}">Romance</a></li>
-              <li><a class="dropdown-item" href="{{ route('kategori.show', 'shounen') }}">Shounen</a></li>
             </ul>
           </li>
 

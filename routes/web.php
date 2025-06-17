@@ -29,6 +29,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.link');
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     
@@ -38,16 +39,27 @@ Route::get('/user/home', function () {
     return view('home');
 })->middleware('auth')->name('user.dashboard');
 
-
+// User Routes
 Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
 Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->name('user.dashboard');
 Route::get('/user/kategori/{genre}', [KategoriController::class, 'show'])->name('kategori.show');
 Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer');
 
+// Admin Routes
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+// Tambah Komik
 Route::get('/admin/create', [KomikController::class, 'create'])->name('komik.create');
 Route::post('/admin/store', [KomikController::class, 'store'])->name('store');
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');    
+
+// Edit Komik
+Route::get('/admin/komik/{id}/edit', [KomikController::class, 'edit'])->name('komik.edit');
+Route::put('/admin/komik/{id}', [KomikController::class, 'update'])->name('komik.update');
+
+// Hapus Komik
+Route::delete('/admin/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
+
 
 Route::get('/chapter/{id}', function($id) {
     return "Chapter ID: " . $id;

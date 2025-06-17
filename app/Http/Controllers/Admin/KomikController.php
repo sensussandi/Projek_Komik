@@ -8,6 +8,7 @@ use App\Models\Komik;
 
 class KomikController extends Controller
 {
+    
     public function create()
     {
         return view('admin.create');
@@ -45,4 +46,42 @@ class KomikController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil ditambahkan!');
     }
+
+public function edit($id)
+{
+    $komik = Komik::findOrFail($id);
+    return view('admin.edit', compact('komik'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'judul' => 'required|string|max:100',
+        'penulis' => 'required|string|max:100',
+        'sinopsis' => 'required|string',
+        'genre' => 'nullable|string|max:100',
+    ]);
+
+    $komik = Komik::findOrFail($id);
+    $komik->judul = $request->judul;
+    $komik->penulis = $request->penulis;
+    $komik->sinopsis = $request->sinopsis;
+    $komik->genre = $request->genre;
+
+    if ($request->hasFile('cover')) {
+        $coverPath = $request->file('cover')->store('cover', 'public');
+        $komik->cover_url = $coverPath;
+    }
+
+    $komik->save();
+
+    return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil diperbarui!');
+}
+
+public function destroy($id)
+{
+    $komik = Komik::findOrFail($id);
+    $komik->delete();
+    return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil dihapus!');
+}
 }

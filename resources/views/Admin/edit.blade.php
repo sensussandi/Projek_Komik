@@ -58,31 +58,25 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('komik.update', $komik->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="mb-2">
                 <label for="judul">Judul :</label>
-                <input type="text" name="judul" id="judul" class="form-control bg-dark text-white" required>
+                <input type="text" name="judul" id="judul" class="form-control bg-dark text-white" required value="{{ old('judul', $komik->judul) }}">
             </div>
             <div class="mb-2">
                 <label for="genre">Genre :</label>
-                <input type="text" name="genre" id="genre" class="form-control bg-dark text-white">
+                <input type="text" name="genre" id="genre" class="form-control bg-dark text-white" value="{{ old('genre', $komik->genre) }}">
             </div>
             <div class="mb-2">
                 <label for="penulis">Penulis :</label>
-                <input type="text" name="penulis" id="penulis" class="form-control bg-dark text-white" required>
+                <input type="text" name="penulis" id="penulis" class="form-control bg-dark text-white" required value="{{ old('penulis', $komik->penulis) }}">
             </div>
             <div class="mb-2">
                 <label for="sinopsis">Deskripsi :</label>
-                <textarea name="sinopsis" id="sinopsis" rows="4" class="form-control bg-dark text-white" required placeholder="Text Area"></textarea>
-            </div>
-            <div class="mb-2">
-                <label for="cover">Gambar Cover :</label>
-                <input type="file" name="cover" id="cover" class="form-control bg-dark text-white">
-            </div>
-            <div class="mb-2">
-                <label for="chapter">Tambahkan Chapter :</label>
-                <input type="text" name="chapter" id="chapter" class="form-control bg-dark text-white">
+                <textarea name="sinopsis" id="sinopsis" rows="4" class="form-control bg-dark text-white" required>{{ old('sinopsis', $komik->sinopsis) }}</textarea>
+
             </div>
 
             <div class="mt-3 d-flex justify-content-between">
