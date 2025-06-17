@@ -20,7 +20,10 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+         // Ambil apakah user mencentang "remember me"
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate(); // <-- ini WAJIB agar login-nya tersimpan!
 
             $user = Auth::user();
