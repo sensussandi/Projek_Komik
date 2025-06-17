@@ -67,9 +67,9 @@ Route::put('/admin/komik/{id}', [KomikController::class, 'update'])->name('komik
 Route::delete('/admin/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
 
 // User Management
-Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('users.ban');
-Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::post('/admin/editusers/{id}/ban', [UserController::class, 'ban'])->name('admin.editusers.ban');
+Route::get('/admin/editusers/{id}/edit', [UserController::class, 'edit'])->name('admin.editusers.edit');
+Route::put('/admin/editusers/{id}', [UserController::class, 'update'])->name('admin.editusers.update');
 
 
 Route::get('/chapter/{id}', function($id) {

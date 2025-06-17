@@ -89,12 +89,12 @@
                     <td>{{ ucfirst($user->role) }}</td>
                     <td>
                         @if($user->role === 'user')
-                        <form action="{{ route('editusers.ban', $user->id) }}" method="POST">
+                        <form action="{{ route('admin.editusers.ban', $user->id) }}" method="POST">
                             @csrf
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Ban pengguna ini?')">Ban</button>
                         </form>
                         @else
-                        <a href="{{ route('editusers.edit', $user->id) }}" class="btn btn-light btn-sm">Ubah</a>
+                        <a href="{{ route('admin.editusers.edit', $user->id) }}" class="btn btn-light btn-sm">Ubah</a>
                         @endif
                     </td>
                 </tr>
