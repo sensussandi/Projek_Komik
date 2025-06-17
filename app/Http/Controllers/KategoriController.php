@@ -7,9 +7,13 @@ use App\Models\Comic;
 
 class KategoriController extends Controller
 {
-    public function show($genre)
+        public function show($genre)
     {
-        $comics = Comic::where('genre', $genre)->get();
+        $comics = Comic::where('genre', 'LIKE', "%$genre%")
+            ->whereHas('chapters') // hanya komik yang punya chapter
+            ->with('latestChapters')
+            ->get();
+
         return view('kategori', compact('comics', 'genre'));
     }
 }

@@ -11,6 +11,9 @@
     <p><strong>Sinopsis:</strong></p>
     <p>{{ $komik->sinopsis }}</p>
 
+    <p><strong>Genre:</strong></p>
+    <p>{{ $komik->genre }}</p>
+
     <hr>
     <h3>Daftar Chapter:</h3>
     <ul>

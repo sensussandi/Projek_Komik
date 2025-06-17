@@ -9,7 +9,9 @@
         <div class="comic-wrapper">
             @foreach ($comics as $comic)
                 <div class="comic-item">
-                    <img src="{{ asset($comic->cover_url) }}" alt="{{ $comic->judul }}">
+                    <a href="{{ route('komik.detail', $comic->id) }}">
+                        <img src="{{ asset($comic->cover_url) }}" alt="{{ $comic->judul }}">
+                    </a>
                     <h1>{{ $comic->judul }}</h1>
 
                     <div class="chapter-buttons">
