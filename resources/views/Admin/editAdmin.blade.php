@@ -9,7 +9,7 @@
 
 <div class="container mt-5">
     <h2>Edit Admin</h2>
-    <form action="{{ route('admin.editusers.update', $user->id) }}" method="POST">
+    <form action="{{ route('admin.editAdmin.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')
     

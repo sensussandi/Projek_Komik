@@ -14,18 +14,21 @@ class UserController extends Controller
         return view('admin.users', compact('users'));
     }
     public function ban($id)
-    {
-        $user = User::findOrFail($id);
-        $user->is_banned = true;
-        $user->save();
+{
+    $user = User::findOrFail($id);
 
-        return redirect()->route('admin.users')->with('success', 'User berhasil diblokir.');
-    }
+    // Toggle is_banned
+    $user->is_banned = !$user->is_banned;
+    $user->save();
+
+    $status = $user->is_banned ? 'diblokir' : 'diaktifkan kembali';
+    return redirect()->route('admin.users')->with('success', "User berhasil $status.");
+}
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.editusers', compact('user'));
+        return view('admin.editAdmin', compact('user'));
     }
 
     public function update(Request $request, $id)

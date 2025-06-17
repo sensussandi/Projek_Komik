@@ -11,6 +11,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PopulerController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Middleware\CheckBanned;
 
 
 Route::get('/', function () {
@@ -36,10 +37,8 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.link');
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    
-
+Route::middleware(['auth', CheckBanned::class])->group(function () {
+    Route::get('/user/home', [HomeController::class, 'index'])->name('user.dashboard');
 
 Route::get('/user/home', function () {
     return view('home');
@@ -47,7 +46,6 @@ Route::get('/user/home', function () {
 
 // User Routes
 Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
-Route::get('/user/home', [HomeController::class, 'index'])->middleware('auth')->name('user.dashboard');
 Route::get('/user/kategori/{genre}', [KategoriController::class, 'show'])->name('kategori.show');
 Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer');
 
@@ -67,22 +65,17 @@ Route::put('/admin/komik/{id}', [KomikController::class, 'update'])->name('komik
 Route::delete('/admin/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
 
 // User Management
-Route::post('/admin/editusers/{id}/ban', [UserController::class, 'ban'])->name('admin.editusers.ban');
-Route::get('/admin/editusers/{id}/edit', [UserController::class, 'edit'])->name('admin.editusers.edit');
-Route::put('/admin/editusers/{id}', [UserController::class, 'update'])->name('admin.editusers.update');
-
+Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
+Route::get('/admin/editAdmin/{id}/edit', [UserController::class, 'edit'])->name('admin.editAdmin.edit');
+Route::put('/admin/editAdmin/{id}', [UserController::class, 'update'])->name('admin.editAdmin.update');
 
 Route::get('/chapter/{id}', function($id) {
     return "Chapter ID: " . $id;
 })->name('chapter.show');
 
-    Route::get('/user/home', function () {
-        return view('home');
-    })->name('user.dashboard');
 
     Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
 
-    Route::get('/user/home', [HomeController::class, 'index'])->name('user.dashboard');
 
     Route::get('/chapter/{id}', function($id) {
         return "Chapter ID: " . $id;
