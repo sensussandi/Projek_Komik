@@ -15,12 +15,13 @@ class ComicController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('searching');
+        $komik = Comic::where('judul', 'like', "%{$query}%")
+                    ->whereHas('chapters') 
+                    ->with(['latestChapters', 'chapters'])
+                    ->get();
 
-        $komik = Comic::where('judul', 'like', "%{$query}%")->get();
-
-        return view('komik.result', compact('komik', 'query'));
+        return view('komik.result', compact('komik','query'));
     }
-
     public function show($id)
         {
             $komik = Comic::with(['chapters' => function($query){
