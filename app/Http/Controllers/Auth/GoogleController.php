@@ -12,7 +12,7 @@ class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        
+
         return Socialite::driver('google')->redirect();
     }
 
@@ -44,17 +44,16 @@ class GoogleController extends Controller
                 }
             }
 
-            Auth::login($user);
+            Auth::guard('web')->login($user);
+            session()->regenerate(); // ini mencegah session fixation attack
 
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        } else {
-            return redirect()->route('user.dashboard');
-        }
-
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('user.dashboard');
+            }
         } catch (\Exception $e) {
             return redirect('/login')->with('error', 'Autentikasi Google gagal');
         }
     }
-
 }

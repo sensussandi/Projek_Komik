@@ -21,6 +21,8 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // <-- ini WAJIB agar login-nya tersimpan!
+
             $user = Auth::user();
 
             if ($user->role == 'admin') {
@@ -39,4 +41,3 @@ class LoginController extends Controller
         return redirect()->route('login');
     }
 }
-
