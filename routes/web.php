@@ -27,6 +27,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout.link');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     

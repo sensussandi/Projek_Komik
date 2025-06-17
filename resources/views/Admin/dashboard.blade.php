@@ -46,6 +46,18 @@
         .table td,
         .table th {
             vertical-align: middle;
+            text-align: center;
+        }
+
+        img.cover-img {
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .btn-action {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
         }
     </style>
 </head>
@@ -54,13 +66,12 @@
 
     <!-- Navbar -->
     <div class="navbar d-flex align-items-center justify-content-between">
-        <div>
-            <strong>Admin</strong>
-            <a href="#" class="active">Manajemen</a>
+        <div class="d-flex align-items-center gap-3">
+            <strong class="me-3">Admin</strong>
+            <a href="{{ route('admin.dashboard') }}" class="active">Manajemen</a>
             <a href="{{ route('admin.users') }}">Pengguna</a>
-
         </div>
-        <a href="#" class="logout">Logout</a>
+        <a href="{{ route('logout.link') }}" class="logout">Logout</a>
     </div>
 
     <!-- Komik Management Section -->

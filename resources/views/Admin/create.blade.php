@@ -42,11 +42,13 @@
 <body>
 
     <!-- Navbar -->
-    <div class="navbar">
-        <strong>Admin</strong>
-        <a href="{{ url('/admin/dashboard') }}">Dashboard</a>
-        <a href="#">Pengguna</a>
-        <a href="#" class="logout">Logout</a>
+    <div class="navbar d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+            <strong class="me-3">Admin</strong>
+            <a href="{{ route('admin.dashboard') }}">Manajemen</a>
+            <a href="{{ route('admin.users') }}">Pengguna</a>
+        </div>
+        <a href="{{ route('logout.link') }}" class="logout">Logout</a>
     </div>
 
     <!-- Form Tambah Komik -->

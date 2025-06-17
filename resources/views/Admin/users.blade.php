@@ -42,14 +42,15 @@
 </head>
 <body>
 
+ 
     <!-- Navbar -->
     <div class="navbar d-flex align-items-center justify-content-between">
-        <div>
-            <strong>Admin</strong>
-            <a href="{{ route('admin.dashboard') }}">Manajemen</a>
+        <div class="d-flex align-items-center gap-3">
+            <strong class="me-3">Admin</strong>
+            <a href="{{ route('admin.dashboard') }}" >Manajemen</a>
             <a href="{{ route('admin.users') }}" class="active">Pengguna</a>
         </div>
-        <a href="#" class="logout">Logout</a>
+        <a href="{{ route('logout.link') }}" class="logout">Logout</a>
     </div>
 
     <!-- Manajemen Pengguna Section -->
