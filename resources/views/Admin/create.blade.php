@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Tambah Komik</title>
@@ -9,19 +10,23 @@
             background-color: #000;
             color: #fff;
         }
+
         .navbar {
             background-color: #111;
             padding: 10px;
         }
+
         .navbar a {
             color: white;
             margin-right: 15px;
             text-decoration: none;
         }
+
         .navbar a.logout {
             color: red;
             font-weight: bold;
         }
+
         .form-container {
             background-color: #1e1e1e;
             padding: 25px;
@@ -30,16 +35,51 @@
             max-width: 700px;
             margin: 40px auto;
         }
+
         label {
             font-weight: bold;
             margin-top: 10px;
         }
+
         .btn-custom {
             padding-left: 30px;
             padding-right: 30px;
         }
     </style>
 </head>
+<script>
+    function updatePlaceholders() {
+        const inputs = document.querySelectorAll('#chapter-wrapper input[name="chapters[]"]');
+        inputs.forEach((input, index) => {
+            input.placeholder = `Chapter ${index + 1}`;
+        });
+    }
+
+    function addChapter() {
+        const wrapper = document.getElementById('chapter-wrapper');
+
+        const div = document.createElement('div');
+        div.classList.add('input-group', 'mb-2');
+
+        div.innerHTML = `
+            <input type="text" name="chapters[]" class="form-control bg-dark text-white">
+            <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
+        `;
+
+        wrapper.appendChild(div);
+        updatePlaceholders();
+    }
+
+    function removeChapter(button) {
+        const field = button.parentElement;
+        field.remove();
+        updatePlaceholders();
+    }
+
+    // Inisialisasi ulang placeholder saat halaman pertama kali dimuat
+    document.addEventListener('DOMContentLoaded', updatePlaceholders);
+</script>
+
 <body>
 
     <!-- Navbar -->
@@ -55,7 +95,7 @@
     <!-- Form Tambah Komik -->
     <div class="form-container">
         @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
@@ -102,7 +142,17 @@
 
             <div class="mb-2">
                 <label for="chapter">Tambahkan Chapter :</label>
-                <input type="text" name="chapter" id="chapter" class="form-control bg-dark text-white">
+                <div id="chapter-wrapper">
+                    <!-- Field chapter pertama -->
+                    <div class="input-group mb-2">
+                        <input type="text" name="chapters[]" class="form-control bg-dark text-white" placeholder="Chapter 1">
+                        <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
+                    </div>
+                    <!-- Tambahan akan dimasukkan di bawah sini -->
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-success mt-2" onclick="addChapter()">+ Tambah Chapter</button>
+                </div>
             </div>
 
             <div class="mt-3 d-flex justify-content-between">
@@ -135,4 +185,5 @@
         @csrf
 
 </body>
+
 </html>

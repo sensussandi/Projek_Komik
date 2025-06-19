@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Tambah Komik</title>
@@ -9,19 +10,23 @@
             background-color: #000;
             color: #fff;
         }
+
         .navbar {
             background-color: #111;
             padding: 10px;
         }
+
         .navbar a {
             color: white;
             margin-right: 15px;
             text-decoration: none;
         }
+
         .navbar a.logout {
             color: red;
             font-weight: bold;
         }
+
         .form-container {
             background-color: #1e1e1e;
             padding: 25px;
@@ -30,16 +35,44 @@
             max-width: 700px;
             margin: 40px auto;
         }
+
         label {
             font-weight: bold;
             margin-top: 10px;
         }
+
         .btn-custom {
             padding-left: 30px;
             padding-right: 30px;
         }
     </style>
 </head>
+<script>
+    function updatePlaceholders() {
+        const inputs = document.querySelectorAll('#chapter-wrapper input');
+        inputs.forEach((inp, idx) => inp.placeholder = `Chapter ${idx+1}`);
+    }
+
+    function addChapter() {
+        const container = document.getElementById('chapter-new-container');
+        const div = document.createElement('div');
+        div.className = 'input-group mb-2';
+        div.innerHTML = `
+        <input type="text" name="chapters[new][]" class="form-control bg-dark text-white">
+        <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
+    `;
+        container.appendChild(div);
+        updatePlaceholders();
+    }
+
+    function removeChapter(btn) {
+        btn.parentElement.remove();
+        updatePlaceholders();
+    }
+
+    document.addEventListener('DOMContentLoaded', updatePlaceholders);
+</script>
+
 <body>
 
     <!-- Navbar -->
@@ -55,7 +88,7 @@
     <!-- Form Tambah Komik -->
     <div class="form-container">
         @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
         <form action="{{ route('komik.update', $komik->id) }}" method="POST" enctype="multipart/form-data">
@@ -76,15 +109,41 @@
             <div class="mb-2">
                 <label for="sinopsis">Deskripsi :</label>
                 <textarea name="sinopsis" id="sinopsis" rows="4" class="form-control bg-dark text-white" required>{{ old('sinopsis', $komik->sinopsis) }}</textarea>
-
             </div>
+            <div class="mb-2">
+                <label for="chapter">Edit Chapter :</label>
 
+                <div id="chapter-wrapper">
+                    @foreach ($komik->chapters as $i => $chapter)
+                    <div class="input-group mb-2">
+                        <input type="text"
+                            name="chapters[{{ $chapter->id }}]"
+                            class="form-control bg-dark text-white"
+                            value="{{ $chapter->judul_chapter }}"
+                            placeholder="Chapter {{ $i+1 }}">
+                        <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
+                        {{-- Tombol kelola gambar --}}
+                        <a href="{{ route('chapterImage.index', [$komik, $chapter]) }}"
+                            class="btn btn-sm btn-secondary ms-2">Kelola Gambar</a>
+                    </div>
+
+                    @endforeach
+
+                    <div id="chapter-new-container"></div>
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-success" onclick="addChapter()">+ Tambah Chapter</button>
+                </div>
+            </div>
             <div class="mt-3 d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary btn-custom">Simpan</button>
                 <a href="{{ url('/admin/dashboard') }}" class="btn btn-danger btn-custom">Batal</a>
             </div>
-        </form>
+    </div>
+    </form>
     </div>
 
 </body>
+
 </html>
