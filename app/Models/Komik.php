@@ -18,7 +18,10 @@ class Komik extends Model
         'genre',
         'cover_url',
     ];
-
-    // Ini sangat penting untuk mencegah error timestamps
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class, 'komik_id');
+    }
+    // untuk mencegah error timestamps
     public $timestamps = false;
 }
