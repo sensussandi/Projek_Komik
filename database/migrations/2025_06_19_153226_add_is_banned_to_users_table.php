@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('komik', function (Blueprint $table) {
-            $table->timestamps(); // ini menambah created_at dan updated_at
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_banned')->default(false)->after('role');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
-        Schema::table('komik', function (Blueprint $table) {
-            $table->dropTimestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_banned');
         });
     }
 };

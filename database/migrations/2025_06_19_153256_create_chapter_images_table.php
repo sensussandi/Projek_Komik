@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('chapter_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chapter_id')->constrained()->cascadeOnDelete();
-            $table->string('image_path');
-            $table->unsignedInteger('sort_order')->default(1);
             $table->timestamps();
         });
     }

@@ -21,14 +21,27 @@ class ChapterImageController extends Controller
     if (!$files || !is_array($files)) {
         return back()->with('error', 'Tidak ada gambar dipilih!');
     }
+    
+     $destinationPath = public_path('img/page');
+    if (!file_exists($destinationPath)) {
+        mkdir($destinationPath, 0777, true);
+    }
 
     $lastOrder = $chapter->images()->max('urutan') ?? 0;
 
+    
     foreach ($files as $file) {
-        $path = $file->store('halmanan', 'public');
+        // Generate nama file unik
+        $fileName = 'chapter-'.$chapter->id.'-'.time().'-'.uniqid().'.'.$file->getClientOriginalExtension();
+        
+        // Pindahkan file ke folder tujuan
+        $file->move($destinationPath, $fileName);
+        
+        // Path yang akan disimpan di database
+        $relativePath = 'img/page/'.$fileName;
 
         $chapter->images()->create([
-            'image_url' => $path,         // gunakan kolom image_url
+            'image_url' => $relativePath,         // gunakan kolom image_url
             'urutan'    => ++$lastOrder,  // kolom urutan
         ]);
     }

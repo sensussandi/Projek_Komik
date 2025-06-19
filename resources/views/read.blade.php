@@ -1,11 +1,11 @@
 @extends('layouts.reader')
 
-@section('judul', $chapter->comic->judul . ' - Chapter ' . $chapter->nomor_chapter)
+@section('judul', $chapter->komik->judul . ' - Chapter ' . $chapter->nomor_chapter)
 
 @section('content')
     <div class="reader-header">
         <a href="{{ route('home') }}">⬅️ Kembali</a>
-        <span>{{ $chapter->comic->judul }} > Chapter: {{ $chapter->judul_chapter }}</span>
+        <span>{{ $chapter->komik->judul }} > Chapter: {{ $chapter->judul_chapter }}</span>
         <a href="{{ route('home') }}">🏠 Home</a>
     </div>
 

@@ -42,7 +42,7 @@ class KomikController extends Controller
             $filename = 'komik' . time() . '.' . $file->getClientOriginalExtension(); 
             $file->move(public_path('img/comic'), $filename);
             $coverPath = 'img/comic/' . $filename;
-            dd($coverPath);
+            
         }
 
         $komik = Komik::create([
@@ -123,10 +123,24 @@ class KomikController extends Controller
     }
 
 
-    public function destroy($id)
-    {
-        $komik = Komik::findOrFail($id);
+   public function destroy($id)
+{
+    $komik = Komik::findOrFail($id);
+    
+    \DB::transaction(function () use ($komik) {
+        // Hapus komentar terkait
+        $komik->komentar()->delete();
+        
+        // Hapus chapter dan halaman terkait
+        $komik->chapters()->each(function($chapter) {
+            $chapter->pages()->delete();
+            $chapter->delete();
+        });
+        
+        // Hapus komik
         $komik->delete();
-        return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil dihapus!');
-    }
+    });
+    
+    return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil dihapus!');
+}
 }

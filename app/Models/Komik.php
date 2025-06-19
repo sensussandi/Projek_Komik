@@ -19,6 +19,11 @@ class Komik extends Model
     {
         return $this->hasMany(Chapter::class, 'komik_id');
     }
+      public function komentar()
+    {
+        return $this->hasMany(Komentar::class,'komik_id');
+    }
+    
 
     // untuk mencegah error timestamps
     public $timestamps = false;

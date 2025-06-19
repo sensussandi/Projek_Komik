@@ -91,7 +91,7 @@
             <tbody>
                 @foreach($komiks as $komik)
                 <tr>
-                    <td><img src="{{ asset('storage/' . $komik->cover_url) }}" width="100"></td>
+                    <td><img src="{{ asset($komik->cover_url) }}" width="100"></td>
                     <td>{{ $komik->judul }}</td>
                     <td>{{ $komik->genre }}</td>
                     <td>{{ Str::limit($komik->sinopsis, 100) }}</td>

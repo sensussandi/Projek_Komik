@@ -31,6 +31,9 @@ Route::get('/cek-login', function () {
     return dd(session()->all());
 });
 
+Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])
+    ->name('password.request');
+
 Route::middleware(['web'])->group(function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

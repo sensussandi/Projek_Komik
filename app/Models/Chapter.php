@@ -21,11 +21,13 @@ class Chapter extends Model
     {
         return $this->belongsTo(Komik::class, 'komik_id');
     }
+ 
 
-    public function pages()
+   public function pages()
     {
-    return $this->hasMany(Halaman::class)->orderBy('urutan');
+        return $this->hasMany(Halaman::class, 'chapter_id')->orderBy('urutan');
     }
+
 
     
 

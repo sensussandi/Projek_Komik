@@ -38,7 +38,7 @@
                 <!-- Ini untuk pakai icon Google dari Font Awesome -->
                 <i class="fab fa-google me-2"></i>Login dengan Google</a>
         </form>
-        <!-- <p class="text-center mt-2"><a href="{{ route('password.request') }}">Lupa kata sandi?</a></p> -->
+        <p class="text-center mt-2"><a href="{{ route('password.request') }}">Lupa kata sandi?</a></p>
 
         <p class="text-center mt-3">Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
 
