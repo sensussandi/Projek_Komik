@@ -23,6 +23,7 @@ class KomikController extends Controller
     
     public function store(Request $request)
     {
+        
         $request->validate([
             'judul' => 'required|string|max:100',
             'penulis' => 'required|string|max:100',
@@ -33,7 +34,11 @@ class KomikController extends Controller
 
         $coverPath = null;
         if ($request->hasFile('cover')) {
-            $coverPath = $request->file('cover')->store('covers', 'public');
+            $file = $request->file('cover');
+            $filename = 'komik' . time() . '.' . $file->getClientOriginalExtension(); 
+            $file->move(public_path('img/comic'), $filename);
+            $coverPath = 'img/comic/' . $filename;
+            dd($coverPath);
         }
 
         Komik::create([
@@ -47,6 +52,8 @@ class KomikController extends Controller
         return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil ditambahkan!');
     }
 
+
+    
 public function edit($id)
 {
     $komik = Komik::findOrFail($id);
@@ -69,9 +76,12 @@ public function update(Request $request, $id)
     $komik->genre = $request->genre;
 
     if ($request->hasFile('cover')) {
-        $coverPath = $request->file('cover')->store('cover', 'public');
-        $komik->cover_url = $coverPath;
+    $file = $request->file('cover');
+    $filename = 'komik' . time() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('img/comic'), $filename);
+    $komik->cover_url = 'img/comic/' . $filename;
     }
+
 
     $komik->save();
 

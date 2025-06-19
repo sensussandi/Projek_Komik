@@ -26,7 +26,8 @@ class ComicController extends Controller
         {
             $komik = Comic::with(['chapters' => function($query){
                 $query->orderBy('nomor_chapter','desc');
-            }])->findOrFail($id);
+                    }, 'komentars.user'
+                    ])->findOrFail($id);
             return view('komik.desc', compact('komik'));
         }
 

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="reader-header">
-        <a href="{{ url()->previous() }}">⬅️ Kembali</a>
+        <a href="{{ route('home') }}">⬅️ Kembali</a>
         <span>{{ $chapter->comic->judul }} > Chapter: {{ $chapter->judul_chapter }}</span>
         <a href="{{ route('home') }}">🏠 Home</a>
     </div>
@@ -14,4 +14,19 @@
             <img src="{{ asset($page->image_url) }}" alt="Page {{ $page->urutan }}">
         @endforeach
     </div>
+
+        <div class="chapter-navigation">
+            @if ($previousChapter)
+                <a href="{{ route('chapter.show', ['id' => $previousChapter->id]) }}" class="btn btn-secondary">⬅️ Sebelumnya</a>
+            @endif
+
+            @if ($nextChapter)
+                <a href="{{ route('chapter.show', ['id' => $nextChapter->id]) }}" class="btn btn-primary">Selanjutnya ➡️</a>
+            @endif
+        </div>
+
+
+
+
+
 @endsection

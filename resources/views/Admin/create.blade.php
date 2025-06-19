@@ -63,23 +63,43 @@
             <div class="mb-2">
                 <label for="judul">Judul :</label>
                 <input type="text" name="judul" id="judul" class="form-control bg-dark text-white" required>
+                @error('judul')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
+
             <div class="mb-2">
                 <label for="genre">Genre :</label>
                 <input type="text" name="genre" id="genre" class="form-control bg-dark text-white">
+                @error('genre')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
+
             <div class="mb-2">
                 <label for="penulis">Penulis :</label>
                 <input type="text" name="penulis" id="penulis" class="form-control bg-dark text-white" required>
+                @error('penulis')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
+
             <div class="mb-2">
                 <label for="sinopsis">Deskripsi :</label>
                 <textarea name="sinopsis" id="sinopsis" rows="4" class="form-control bg-dark text-white" required placeholder="Text Area"></textarea>
+                @error('sinopsis')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
-            <div class="mb-2">
+
+           <div class="mb-2">
                 <label for="cover">Gambar Cover :</label>
                 <input type="file" name="cover" id="cover" class="form-control bg-dark text-white">
+                @error('cover')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
+
             <div class="mb-2">
                 <label for="chapter">Tambahkan Chapter :</label>
                 <input type="text" name="chapter" id="chapter" class="form-control bg-dark text-white">
@@ -91,6 +111,28 @@
             </div>
         </form>
     </div>
+
+    <div class="form-container">
+
+   
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Terjadi kesalahan:</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+  
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
 </body>
 </html>

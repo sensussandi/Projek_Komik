@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Komentar;
 
 class Chapter extends Model
 {
@@ -17,6 +18,9 @@ class Chapter extends Model
     {
     return $this->hasMany(Halaman::class)->orderBy('urutan');
     }
+
+    
+
 
 
 

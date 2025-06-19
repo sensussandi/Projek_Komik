@@ -26,4 +26,25 @@
          </div>
     </ul>
 </div>
+
+    <hr>
+<h3>Komentar:</h3>
+{{-- Form tambah komentar --}}
+@if (Auth::check())
+    <form action="{{ route('komentar.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="komik_id" value="{{ $komik->id }}">
+        <textarea name="isi_komentar" class="form-control mb-2" rows="3" placeholder="Tulis komentar..."></textarea>
+        <button type="submit" class="btn btn-primary">Kirim</button>
+    </form>
+@endif
+
+@foreach ($komik->komentars as $komentar)
+    <div class="mb-2 p-2 bg-dark rounded text-white">
+        <strong>{{ $komentar->user->name }}</strong>: {{ $komentar->isi_komentar }}
+        <br><small class="text-muted">{{ $komentar->created_at->diffForHumans() }}</small>
+    </div>
+@endforeach
+
+
 @endsection
