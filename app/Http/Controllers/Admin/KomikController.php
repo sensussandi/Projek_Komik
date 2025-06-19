@@ -112,7 +112,7 @@ class KomikController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.dashboard')->with('success');
+        return redirect()->route('admin.dashboard')->with('success', 'Komik & chapter berhasil diperbarui!');
     }
 
 
@@ -120,6 +120,6 @@ class KomikController extends Controller
     {
         $komik = Komik::findOrFail($id);
         $komik->delete();
-        return redirect()->route('admin.dashboard')->with('success');
+        return redirect()->route('admin.dashboard')->with('success', 'Komik berhasil dihapus!');
     }
 }

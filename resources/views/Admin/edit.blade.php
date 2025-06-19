@@ -48,30 +48,31 @@
     </style>
 </head>
 <script>
-function updatePlaceholders() {
-    const inputs = document.querySelectorAll('#chapter-wrapper input');
-    inputs.forEach((inp, idx) => inp.placeholder = `Chapter ${idx+1}`);
-}
+    function updatePlaceholders() {
+        const inputs = document.querySelectorAll('#chapter-wrapper input');
+        inputs.forEach((inp, idx) => inp.placeholder = `Chapter ${idx+1}`);
+    }
 
-function addChapter() {
-    const container = document.getElementById('chapter-new-container');
-    const div = document.createElement('div');
-    div.className = 'input-group mb-2';
-    div.innerHTML = `
+    function addChapter() {
+        const container = document.getElementById('chapter-new-container');
+        const div = document.createElement('div');
+        div.className = 'input-group mb-2';
+        div.innerHTML = `
         <input type="text" name="chapters[new][]" class="form-control bg-dark text-white">
         <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
     `;
-    container.appendChild(div);
-    updatePlaceholders();
-}
+        container.appendChild(div);
+        updatePlaceholders();
+    }
 
-function removeChapter(btn){
-    btn.parentElement.remove();
-    updatePlaceholders();
-}
+    function removeChapter(btn) {
+        btn.parentElement.remove();
+        updatePlaceholders();
+    }
 
-document.addEventListener('DOMContentLoaded', updatePlaceholders);
+    document.addEventListener('DOMContentLoaded', updatePlaceholders);
 </script>
+
 <body>
 
     <!-- Navbar -->
@@ -109,12 +110,10 @@ document.addEventListener('DOMContentLoaded', updatePlaceholders);
                 <label for="sinopsis">Deskripsi :</label>
                 <textarea name="sinopsis" id="sinopsis" rows="4" class="form-control bg-dark text-white" required>{{ old('sinopsis', $komik->sinopsis) }}</textarea>
             </div>
-            {{-- … potongan atas tetap … --}}
             <div class="mb-2">
                 <label for="chapter">Edit Chapter :</label>
 
                 <div id="chapter-wrapper">
-                    {{-- A. Chapter lama --}}
                     @foreach ($komik->chapters as $i => $chapter)
                     <div class="input-group mb-2">
                         <input type="text"
@@ -123,24 +122,24 @@ document.addEventListener('DOMContentLoaded', updatePlaceholders);
                             value="{{ $chapter->judul_chapter }}"
                             placeholder="Chapter {{ $i+1 }}">
                         <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
+                        {{-- Tombol kelola gambar --}}
+                        <a href="{{ route('chapterImage.index', [$komik, $chapter]) }}"
+                            class="btn btn-sm btn-secondary ms-2">Kelola Gambar</a>
                     </div>
+
                     @endforeach
 
-                    {{-- B. TEMPAT chapter baru akan disisipkan --}}
                     <div id="chapter-new-container"></div>
                 </div>
 
-                {{-- C. Tombol tambah di bawah --}}
                 <div class="text-end">
                     <button type="button" class="btn btn-success" onclick="addChapter()">+ Tambah Chapter</button>
                 </div>
             </div>
-            {{-- … potongan bawah tetap … --}}
-
-    </div>
-    <div class="mt-3 d-flex justify-content-between">
-        <button type="submit" class="btn btn-primary btn-custom">Simpan</button>
-        <a href="{{ url('/admin/dashboard') }}" class="btn btn-danger btn-custom">Batal</a>
+            <div class="mt-3 d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary btn-custom">Simpan</button>
+                <a href="{{ url('/admin/dashboard') }}" class="btn btn-danger btn-custom">Batal</a>
+            </div>
     </div>
     </form>
     </div>

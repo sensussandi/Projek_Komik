@@ -10,12 +10,18 @@ class Chapter extends Model
     // Ini sangat penting untuk mencegah error timestamps
     public $timestamps = false;
     protected $fillable = [
-        'komik_id', 'judul_chapter', 'nomor_chapter'
+        'komik_id',
+        'judul_chapter',
+        'nomor_chapter'
     ];
 
 
     public function komik()
     {
         return $this->belongsTo(Komik::class, 'komik_id');
+    }
+    public function images()
+    {
+        return $this->hasMany(ChapterImage::class, 'chapter_id')->orderBy('urutan');
     }
 }

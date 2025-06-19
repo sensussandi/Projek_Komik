@@ -79,6 +79,7 @@
     // Inisialisasi ulang placeholder saat halaman pertama kali dimuat
     document.addEventListener('DOMContentLoaded', updatePlaceholders);
 </script>
+
 <body>
 
     <!-- Navbar -->
@@ -122,10 +123,15 @@
             <div class="mb-2">
                 <label for="chapter">Tambahkan Chapter :</label>
                 <div id="chapter-wrapper">
+                    <!-- Field chapter pertama -->
                     <div class="input-group mb-2">
                         <input type="text" name="chapters[]" class="form-control bg-dark text-white" placeholder="Chapter 1">
-                        <button type="button" class="btn btn-success" onclick="addChapter()">+</button>
+                        <button type="button" class="btn btn-danger" onclick="removeChapter(this)">-</button>
                     </div>
+                    <!-- Tambahan akan dimasukkan di bawah sini -->
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-success mt-2" onclick="addChapter()">+ Tambah Chapter</button>
                 </div>
             </div>
 

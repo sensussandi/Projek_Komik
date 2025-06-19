@@ -12,7 +12,8 @@ use App\Http\Controllers\PopulerController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\CheckBanned;
-
+use App\Http\Controllers\Admin\ChapterImageController;
+use App\Models\Komik;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -63,6 +64,13 @@ Route::put('/admin/komik/{id}', [KomikController::class, 'update'])->name('komik
 
 // Hapus Komik
 Route::delete('/admin/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
+
+Route::get ('/komik/{komik}/chapter/{chapter}/image', [ChapterImageController::class,'index'])->name('chapterImage.index');
+Route::post('/komik/{komik}/chapter/{chapter}/image', [ChapterImageController::class,'store'])->name('chapterImage.store');
+Route::post('/chapterImage/order', [ChapterImageController::class,'updateOrder'])->name('chapterImage.order');
+Route::delete('/chapterImage/{image}', [ChapterImageController::class,'destroy'])->name('chapterImage.destroy');
+Route::get('/komik/{komik}/chapter/{chapter}/edit', [KomikController::class, 'edit'])->name('chapter.edit');
+
 
 // User Management
 Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
