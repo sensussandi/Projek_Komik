@@ -22,16 +22,24 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+            
 
             <input type="email" name="email" class="form-control" placeholder="Email" required><br><br>
 
             <input type="password" name="password" class="form-control" placeholder="Password" required><br><br>
+
+            <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+            <label class="form-check-label" for="remember">Ingat Saya</label></div>
+
             <button type="submit" class="btn btn-dark  w-100 mt-2">Login</button>
 
             <a href="{{ route('auth.google') }}" class="btn btn-danger w-100 mt-2">
                 <!-- Ini untuk pakai icon Google dari Font Awesome -->
                 <i class="fab fa-google me-2"></i>Login dengan Google</a>
         </form>
+        <!-- <p class="text-center mt-2"><a href="{{ route('password.request') }}">Lupa kata sandi?</a></p> -->
+
         <p class="text-center mt-3">Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
 
         @if(session('success'))

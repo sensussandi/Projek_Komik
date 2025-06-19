@@ -15,6 +15,7 @@ use App\Http\Middleware\CheckBanned;
 use App\Http\Controllers\Admin\ChapterImageController;
 use App\Models\Komik;use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\KomentarController;
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -78,10 +79,10 @@ Route::delete('/chapterImage/{image}', [ChapterImageController::class,'destroy']
 Route::get('/komik/{komik}/chapter/{chapter}/edit', [KomikController::class, 'edit'])->name('chapter.edit');
 
 
-    // User Management
-    Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
-    Route::get('/admin/editAdmin/{id}/edit', [UserController::class, 'edit'])->name('admin.editAdmin.edit');
-    Route::put('/admin/editAdmin/{id}', [UserController::class, 'update'])->name('admin.editAdmin.update');
+// User Management
+Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
+Route::get('/admin/editAdmin/{id}/edit', [UserController::class, 'edit'])->name('admin.editAdmin.edit');
+Route::put('/admin/editAdmin/{id}', [UserController::class, 'update'])->name('admin.editAdmin.update');
 
     Route::get('/chapter/{id}', function($id) {
         return "Chapter ID: " . $id;
