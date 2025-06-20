@@ -1,0 +1,148 @@
+body {
+    background-color: #2A2424;
+    text-color: white;
+}
+
+.container {
+    /* position: relative; */
+    z-index: 1;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 5rem;
+    max-width: 90%;
+}
+
+.container h3{
+    color:white;
+}
+.container p{
+    color:white;
+}
+
+.container h1{
+    font-size:24px;
+    color:white;
+    margin-left:60px;
+}
+
+
+.navbar-custom {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    width: 100vw; /* atau 100% */
+    background-color: black;
+    padding: 1rem;
+}
+
+
+
+
+
+
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: white !important; 
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ffcc00 !important; 
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .dropdown-menu .dropdown-item:hover {
+    background-color: #343a40; 
+    color: #fff !important;    
+    transition: background-color 0.3s ease;
+}
+
+
+.navbar-custom .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+.comic-wrapper-container {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+    }
+
+  
+.comic-wrapper {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+   
+.comic-item {
+        text-align: center;
+        transform: scale(0.68); 
+        transform-origin: top center;
+    }
+
+.comic-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+.comic-item h1 {
+        font-size: 30px;
+        margin: 0;
+    }
+
+  
+
+.chapter-buttons {
+    display: flex;
+    flex-direction: column; 
+    gap: 0.5rem; 
+    margin-top: 0.5rem;
+    border-radius: 10px; 
+}
+
+.chapterONdesc-button{
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+   
+    
+}
+
+.chapterONdesc-button:hover {
+    background-color: #333; 
+}
+
+
+.chapter-button {
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.chapter-button:hover {
+    background-color: #333; 
+}
+
+.comic-item{
+    color:white;
+}
+

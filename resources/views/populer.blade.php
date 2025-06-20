@@ -3,7 +3,7 @@
 @section('judul', 'Home')
 
 @section('content')
-    <h1>Rekomendasi</h1>
+    <h1>Populer</h1>
 
     <div class="container_content">
         <div class="comic-wrapper">
