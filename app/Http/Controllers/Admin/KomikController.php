@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Komik;
 use App\Models\Chapter;
+use Illuminate\Support\Facades\DB;
 
 class KomikController extends Controller
 {
@@ -127,7 +128,7 @@ class KomikController extends Controller
 {
     $komik = Komik::findOrFail($id);
     
-    \DB::transaction(function () use ($komik) {
+    DB::transaction(function () use ($komik) {
         // Hapus komentar terkait
         $komik->komentar()->delete();
         

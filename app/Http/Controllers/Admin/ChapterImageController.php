@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ChapterImageController extends Controller
-{
+{   
     public function index(Komik $komik, Chapter $chapter)
     {
         return view('admin.chapterImage', compact('komik','chapter'));
@@ -21,27 +21,14 @@ class ChapterImageController extends Controller
     if (!$files || !is_array($files)) {
         return back()->with('error', 'Tidak ada gambar dipilih!');
     }
-    
-     $destinationPath = public_path('img/page');
-    if (!file_exists($destinationPath)) {
-        mkdir($destinationPath, 0777, true);
-    }
 
     $lastOrder = $chapter->images()->max('urutan') ?? 0;
 
-    
     foreach ($files as $file) {
-        // Generate nama file unik
-        $fileName = 'chapter-'.$chapter->id.'-'.time().'-'.uniqid().'.'.$file->getClientOriginalExtension();
-        
-        // Pindahkan file ke folder tujuan
-        $file->move($destinationPath, $fileName);
-        
-        // Path yang akan disimpan di database
-        $relativePath = 'img/page/'.$fileName;
+        $path = $file->store('halmanan', 'public');
 
         $chapter->images()->create([
-            'image_url' => $relativePath,         // gunakan kolom image_url
+            'image_url' => $path,         // gunakan kolom image_url
             'urutan'    => ++$lastOrder,  // kolom urutan
         ]);
     }
