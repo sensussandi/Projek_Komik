@@ -5,61 +5,7 @@
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000;
-            color: white;
-        }
-
-        .navbar {
-            background-color: #111;
-            padding: 15px;
-        }
-
-        .navbar a {
-            color: white;
-            margin-right: 20px;
-            text-decoration: none;
-        }
-
-        .navbar a.active {
-            color: #3390FF;
-            font-weight: bold;
-        }
-
-        .navbar a.logout {
-            color: red;
-            font-weight: bold;
-        }
-
-        .section {
-            padding: 25px;
-            margin: 15px;
-            background-color: #2b2b2b;
-            border-radius: 10px;
-        }
-
-        .table thead {
-            background-color: #1a1a1a;
-        }
-
-        .table td,
-        .table th {
-            vertical-align: middle;
-            text-align: center;
-        }
-
-        img.cover-img {
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .btn-action {
-            display: flex;
-            gap: 5px;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 </head>
 
 <body>

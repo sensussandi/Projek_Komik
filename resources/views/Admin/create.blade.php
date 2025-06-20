@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Tambah Komik</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="{{ asset('css/create.css') }}">
+     
 </head>
 <script>
     function updatePlaceholders() {
