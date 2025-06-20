@@ -45,7 +45,18 @@ body {
 .navbar-custom .nav-link,
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-  color: white !important; /* teks putih */
+  color: white !important; 
+}
+
+.navbar-custom .nav-link:hover {
+    color: #ffcc00 !important; 
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .dropdown-menu .dropdown-item:hover {
+    background-color: #343a40; 
+    color: #fff !important;    
+    transition: background-color 0.3s ease;
 }
 
 
