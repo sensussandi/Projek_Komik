@@ -13,8 +13,12 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Middleware\CheckBanned;
 use App\Http\Controllers\Admin\ChapterImageController;
-use App\Models\Komik;use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\KomentarController;
+
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Middleware\IsAdmin;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -33,6 +37,17 @@ Route::get('/cek-login', function () {
 
 Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])
     ->name('password.request');
+// Menampilkan form request reset password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Mengirim email reset password
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Menampilkan form ubah password
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+// Proses reset password
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 Route::middleware(['web'])->group(function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
@@ -60,6 +75,7 @@ Route::middleware(['auth', CheckBanned::class])->group(function () {
     Route::get('/user/populer', [PopulerController::class, 'index'])->name('populer');
 
     // Admin Routes
+Route::middleware(['auth', CheckBanned::class, IsAdmin::class])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
 
@@ -74,7 +90,7 @@ Route::middleware(['auth', CheckBanned::class])->group(function () {
 
     // Hapus Komik
     Route::delete('/admin/komik/{id}', [KomikController::class, 'destroy'])->name('komik.destroy');
-
+});
 Route::get ('/komik/{komik}/chapter/{chapter}/image', [ChapterImageController::class,'index'])->name('chapterImage.index');
 Route::post('/komik/{komik}/chapter/{chapter}/image', [ChapterImageController::class,'store'])->name('chapterImage.store');
 Route::post('/chapterImage/order', [ChapterImageController::class,'updateOrder'])->name('chapterImage.order');
@@ -86,6 +102,7 @@ Route::get('/komik/{komik}/chapter/{chapter}/edit', [KomikController::class, 'ed
 Route::post('/admin/users/{id}/ban', [UserController::class, 'ban'])->name('admin.users.ban');
 Route::get('/admin/editAdmin/{id}/edit', [UserController::class, 'edit'])->name('admin.editAdmin.edit');
 Route::put('/admin/editAdmin/{id}', [UserController::class, 'update'])->name('admin.editAdmin.update');
+
 
     Route::get('/chapter/{id}', function($id) {
         return "Chapter ID: " . $id;
@@ -108,4 +125,3 @@ Route::put('/admin/editAdmin/{id}', [UserController::class, 'update'])->name('ad
     
 
  });
-

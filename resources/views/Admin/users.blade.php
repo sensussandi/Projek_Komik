@@ -67,10 +67,6 @@
     <div class="section">
         <h2>Manajemen Pengguna</h2>
 
-        <form method="GET" action="{{ route('admin.users') }}" class="mb-3 d-flex">
-            <input type="text" name="search" class="form-control me-2 w-25" placeholder="Cari pengguna..." value="{{ request('search') }}">
-            <button class="btn btn-secondary">Cari</button>
-        </form>
 
         <table class="table table-dark table-bordered">
             <thead>
