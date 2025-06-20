@@ -5,47 +5,7 @@
     <meta charset="UTF-8">
     <title>Tambah Komik</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-        }
-
-        .navbar {
-            background-color: #111;
-            padding: 10px;
-        }
-
-        .navbar a {
-            color: white;
-            margin-right: 15px;
-            text-decoration: none;
-        }
-
-        .navbar a.logout {
-            color: red;
-            font-weight: bold;
-        }
-
-        .form-container {
-            background-color: #1e1e1e;
-            padding: 25px;
-            border-radius: 10px;
-            border: 2px solid #0cf;
-            max-width: 700px;
-            margin: 40px auto;
-        }
-
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .btn-custom {
-            padding-left: 30px;
-            padding-right: 30px;
-        }
-    </style>
+     
 </head>
 <script>
     function updatePlaceholders() {

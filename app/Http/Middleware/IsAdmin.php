@@ -15,6 +15,6 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect('/'); // Atau redirect ke login
+        abort(403, 'Akses ditolak. Anda bukan admin.');
     }
 }
